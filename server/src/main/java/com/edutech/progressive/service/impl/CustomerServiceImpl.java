@@ -1,9 +1,7 @@
 package com.edutech.progressive.service.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import com.edutech.progressive.dao.CustomerDAO;
 import com.edutech.progressive.dao.CustomerDAOImpl;

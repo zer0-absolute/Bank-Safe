@@ -11,6 +11,12 @@ public class Customers implements Comparable<Customers> {
     public Customers() {
     }
 
+    public Customers(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
     public Customers(int customerId, String name, String email, String username, String password) {
         this.customerId = customerId;
         this.name = name;

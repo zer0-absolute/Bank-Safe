@@ -1,31 +1,22 @@
 package com.edutech.progressive.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 import com.edutech.progressive.config.DatabaseConnectionManager;
 import com.edutech.progressive.entity.Accounts;
 
 public class AccountDAOImpl implements AccountDAO {
     private List<Accounts> accountsList = new ArrayList<>();
-    // public static Connection connection;
+    public Connection connection;
 
-    // public AccountDAOImpl() {
-    // try {
-    // connection = DatabaseConnectionManager.getConnection();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
-
-    // public AccountDAOImpl(Connection conn) {
-    // connection = conn;
-    // }
+    public AccountDAOImpl() {
+        try {
+            this.connection = DatabaseConnectionManager.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<Accounts> getAllAccounts() throws SQLException {

@@ -8,6 +8,11 @@ public class Accounts implements Comparable<Accounts> {
     public Accounts() {
     }
 
+    public Accounts(int customerId, double balance) {
+        this.customerId = customerId;
+        this.balance = balance;
+    }
+
     public Accounts(int accountId, int customerId, double balance) {
         this.accountId = accountId;
         this.customerId = customerId;

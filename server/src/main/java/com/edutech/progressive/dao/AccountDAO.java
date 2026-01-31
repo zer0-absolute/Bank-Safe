@@ -6,15 +6,16 @@ import java.util.List;
 import com.edutech.progressive.entity.Accounts;
 
 public interface AccountDAO {
-    int addAccount(Accounts accounts) throws SQLException;
+    public int addAccount(Accounts accounts) throws SQLException;
 
-    Accounts getAccountById(int accountId) throws SQLException;
+    public Accounts getAccountById(int accountId) throws SQLException;
 
-    void updateAccount(Accounts accounts) throws SQLException;
+    public void updateAccount(Accounts accounts) throws SQLException;
 
-    void deleteAccount(int accountId) throws SQLException;
+    public void deleteAccount(int accountId) throws SQLException;
 
-    List<Accounts> getAllAccounts() throws SQLException;
+    public List<Accounts> getAllAccounts() throws SQLException;
 
-    List<Accounts> getAllAccountsByCustomer(int userId) throws SQLException;
+    public List<Accounts> getAllAccountsByCustomer(int userId) throws SQLException;
+
 }
