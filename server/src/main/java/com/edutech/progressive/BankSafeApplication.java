@@ -24,11 +24,5 @@ public class BankSafeApplication {
         CustomerService cs = new CustomerServiceImpl(customerDAO);
         Accounts account = new Accounts(22, 1111);
         Customers customer = new Customers("abs", "DD@gmail.com", "ddabs", "password");
-        as.addAccount(account);
-        cs.addCustomer(customer);
-        as.deleteAccount(1);
-        as.deleteAccount(2);
-        System.out.println(as.getAllAccounts());
-        System.out.println(cs.getAllCustomers());
     }
 }

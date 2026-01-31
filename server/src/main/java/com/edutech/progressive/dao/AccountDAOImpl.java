@@ -73,15 +73,17 @@ public class AccountDAOImpl implements AccountDAO {
         ps.setInt(1, accounts.getCustomerId());
         ps.setDouble(2, accounts.getBalance());
         int rowsAffected = ps.executeUpdate();
+        int generatedID = -1;
         if (rowsAffected > 0) {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                return rs.getInt(1);
+                generatedID = rs.getInt(1);
+                accounts.setAccountId(generatedID);
             } else {
                 throw new SQLException("Creating account failed, no ID obtained.");
             }
         }
-        return -1;
+        return generatedID;
     }
 
     @Override

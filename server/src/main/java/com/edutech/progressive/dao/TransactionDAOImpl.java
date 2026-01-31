@@ -55,10 +55,13 @@ public class TransactionDAOImpl implements TransactionDAO {
         ps.setDate(3, transaction.getTransactionDate());
         ps.setString(4, transaction.getTransactionType());
         int rowsAffected = ps.executeUpdate();
+        int generatedID = -1;
         if (rowsAffected > 0) {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                return rs.getInt(1);
+                generatedID = rs.getInt(1);
+                transaction.setTransactionId(generatedID);
+                return generatedID;
             } else {
                 throw new SQLException("Creating transaction failed, no ID obtained.");
             }
