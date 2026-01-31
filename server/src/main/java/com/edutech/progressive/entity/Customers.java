@@ -17,6 +17,7 @@ public class Customers implements Comparable<Customers> {
         this.username = username;
         this.password = password;
     }
+
     public Customers(int customerId, String name, String email, String username, String password) {
         this.customerId = customerId;
         this.name = name;
@@ -77,6 +78,12 @@ public class Customers implements Comparable<Customers> {
     @Override
     public int compareTo(Customers o) {
         return this.getName().compareTo(o.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Customers [customerId=" + customerId + ", name=" + name + ", email=" + email + ", username=" + username
+                + ", password=" + password + ", role=" + role + "]";
     }
 
 }

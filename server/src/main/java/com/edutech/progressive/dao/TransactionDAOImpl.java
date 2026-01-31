@@ -75,7 +75,7 @@ public class TransactionDAOImpl implements TransactionDAO {
         ps.setDate(3, transaction.getTransactionDate());
         ps.setString(4, transaction.getTransactionType());
         ps.setInt(5, transaction.getTransactionId());
-        ps.executeUpdate(sql);
+        ps.executeUpdate();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class TransactionDAOImpl implements TransactionDAO {
         String sql = "DELETE FROM transactions WHERE transaction_id=?";
         PreparedStatement ps = DatabaseConnectionManager.getConnection().prepareStatement(sql);
         ps.setInt(1, transactionId);
-        ps.executeUpdate(sql);
+        ps.executeUpdate();
     }
 
 }

@@ -10,6 +10,7 @@ import com.edutech.progressive.service.CustomerService;
 
 public class CustomerServiceImpl implements CustomerService {
     private CustomerDAO customerDAO;
+    private static List<Customers> customersList = new ArrayList<>();
 
     public CustomerServiceImpl(CustomerDAOImpl customerDAO) {
         this.customerDAO = customerDAO;
@@ -20,16 +21,13 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDAO.getAllCustomers();
     }
 
-    @Override
-    public int addCustomer(Customers customers) throws SQLException {
-        return customerDAO.addCustomer(customers);
+    public Customers getCustomerById(int customerId) throws SQLException {
+        return customerDAO.getCustomerById(customerId);
     }
 
     @Override
-    public List<Customers> getAllCustomersSortedByName() throws SQLException {
-        List<Customers> ans = customerDAO.getAllCustomers();
-        Collections.sort(ans);
-        return ans;
+    public int addCustomer(Customers customers) throws SQLException {
+        return customerDAO.addCustomer(customers);
     }
 
     public void updateCustomer(Customers customers) throws SQLException {
@@ -40,8 +38,11 @@ public class CustomerServiceImpl implements CustomerService {
         customerDAO.deleteCustomer(customerId);
     }
 
-    public Customers getCustomerById(int customerId) throws SQLException {
-        return customerDAO.getCustomerById(customerId);
+    @Override
+    public List<Customers> getAllCustomersSortedByName() throws SQLException {
+        List<Customers> ans = customerDAO.getAllCustomers();
+        Collections.sort(ans);
+        return ans;
     }
 
 }

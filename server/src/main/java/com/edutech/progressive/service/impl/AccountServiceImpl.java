@@ -10,6 +10,7 @@ import com.edutech.progressive.service.AccountService;
 
 public class AccountServiceImpl implements AccountService {
     private AccountDAO accountDAO;
+    // private static List<Accounts> accountsList = new ArrayList<>();
 
     public AccountServiceImpl(AccountDAOImpl accountDAO) {
         this.accountDAO = accountDAO;
@@ -20,9 +21,21 @@ public class AccountServiceImpl implements AccountService {
         return accountDAO.getAllAccounts();
     }
 
+    public Accounts getAccountById(int accountId) throws SQLException {
+        return accountDAO.getAccountById(accountId);
+    }
+
     @Override
     public int addAccount(Accounts accounts) throws SQLException {
         return accountDAO.addAccount(accounts);
+    }
+
+    public void updateAccount(Accounts accounts) throws SQLException {
+        accountDAO.updateAccount(accounts);
+    }
+
+    public void deleteAccount(int accountId) throws SQLException {
+        accountDAO.deleteAccount(accountId);
     }
 
     @Override
@@ -34,18 +47,6 @@ public class AccountServiceImpl implements AccountService {
 
     public List<Accounts> getAccountsByUser(int userId) throws SQLException {
         return accountDAO.getAllAccountsByCustomer(userId);
-    }
-
-    public Accounts getAccountById(int accountId) throws SQLException {
-        return accountDAO.getAccountById(accountId);
-    }
-
-    public void updateAccount(Accounts accounts) throws SQLException {
-        accountDAO.updateAccount(accounts);
-    }
-
-    public void deleteAccount(int accountId) throws SQLException {
-        accountDAO.deleteAccount(accountId);
     }
 
 }

@@ -69,6 +69,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     generatedID = generatedKeys.getInt(1);
+                    customers.setCustomerId(generatedID);
                 }
             }
             return generatedID;
@@ -84,7 +85,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         ps.setString(3, customers.getUsername());
         ps.setString(4, customers.getPassword());
         ps.setInt(5, customers.getCustomerId());
-        ps.executeUpdate(sql);
+        ps.executeUpdate();
     }
 
     @Override
@@ -92,7 +93,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         String sql = "DELETE FROM customers WHERE customer_id=?";
         PreparedStatement ps = DatabaseConnectionManager.getConnection().prepareStatement(sql);
         ps.setInt(1, customerId);
-        ps.executeUpdate(sql);
+        ps.executeUpdate();
     }
 
     @Override

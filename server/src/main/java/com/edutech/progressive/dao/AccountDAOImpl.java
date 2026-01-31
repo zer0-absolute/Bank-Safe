@@ -7,7 +7,7 @@ import com.edutech.progressive.config.DatabaseConnectionManager;
 import com.edutech.progressive.entity.Accounts;
 
 public class AccountDAOImpl implements AccountDAO {
-    private List<Accounts> accountsList = new ArrayList<>();
+    // private List<Accounts> accountsList = new ArrayList<>();
     public Connection connection;
 
     public AccountDAOImpl() {
@@ -91,7 +91,7 @@ public class AccountDAOImpl implements AccountDAO {
         ps.setInt(1, accounts.getCustomerId());
         ps.setDouble(2, accounts.getBalance());
         ps.setInt(3, accounts.getAccountId());
-        ps.executeUpdate(sql);
+        ps.executeUpdate();
     }
 
     @Override
@@ -99,7 +99,7 @@ public class AccountDAOImpl implements AccountDAO {
         String sql = "DELETE FROM accounts WHERE account_id=?";
         PreparedStatement ps = DatabaseConnectionManager.getConnection().prepareStatement(sql);
         ps.setInt(1, accountId);
-        ps.executeUpdate(sql);
+        ps.executeUpdate();
     }
 
 }
