@@ -21,8 +21,8 @@ public class TransactionDAOImpl implements TransactionDAO {
             double amount = rs.getDouble("amount");
             Date transaction_date = rs.getDate("transaction_date");
             String transaction_type = rs.getString("transaction_type");
-            Transactions transaction = new Transactions(transaction_id, account_id, amount, transaction_type,
-                    transaction_date);
+            Transactions transaction = new Transactions(transaction_id, account_id, amount,
+                    transaction_date, transaction_type);
             ans.add(transaction);
         }
         return ans;
@@ -39,7 +39,7 @@ public class TransactionDAOImpl implements TransactionDAO {
             double amount = rs.getDouble("amount");
             Date transaction_date = rs.getDate("transaction_date");
             String transaction_type = rs.getString("transaction_type");
-            return new Transactions(transactionId, account_id, amount, transaction_type, transaction_date);
+            return new Transactions(transactionId, account_id, amount, transaction_date, transaction_type);
 
         }
         return null;
