@@ -52,7 +52,7 @@ public class TransactionDAOImpl implements TransactionDAO {
                 Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, transaction.getAccountId());
         ps.setDouble(2, transaction.getAmount());
-        ps.setDate(3, transaction.getTransactionDate());
+        ps.setDate(3, new Date(transaction.getTransactionDate().getTime()));
         ps.setString(4, transaction.getTransactionType());
         int rowsAffected = ps.executeUpdate();
         int generatedID = -1;
@@ -75,7 +75,7 @@ public class TransactionDAOImpl implements TransactionDAO {
         PreparedStatement ps = DatabaseConnectionManager.getConnection().prepareStatement(sql);
         ps.setInt(1, transaction.getAccountId());
         ps.setDouble(2, transaction.getAmount());
-        ps.setDate(3, transaction.getTransactionDate());
+        ps.setDate(3, new Date(transaction.getTransactionDate().getTime()));
         ps.setString(4, transaction.getTransactionType());
         ps.setInt(5, transaction.getTransactionId());
         ps.executeUpdate();

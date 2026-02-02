@@ -1,6 +1,6 @@
 package com.edutech.progressive.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Transactions {
     private int transactionId;
@@ -10,13 +10,6 @@ public class Transactions {
     private Date transactionDate;
 
     public Transactions() {
-    }
-
-    public Transactions(int accountId, double amount, Date transactionDate, String transactionType) {
-        this.accountId = accountId;
-        this.amount = amount;
-        this.transactionDate = transactionDate;
-        this.transactionType = transactionType;
     }
 
     public Transactions(int transactionId, int accountId, double amount, Date transactionDate, String transactionType) {
