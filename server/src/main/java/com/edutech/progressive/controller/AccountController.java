@@ -1,38 +1,57 @@
 package com.edutech.progressive.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.edutech.progressive.entity.Accounts;
+import com.edutech.progressive.service.AccountService;
+import com.edutech.progressive.service.impl.AccountServiceImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 
-
-
+@RestController
+@RequestMapping("/accounts")
 public class AccountController {
+    @Autowired
+    private AccountService as;
 
-
-    public ResponseEntity<List<Accounts>> getAllAccounts() {
-        return null;
+    public AccountController(AccountServiceImpl as) {
+        this.as = as;
     }
 
-    public ResponseEntity<Accounts> getAccountById(int accountId) {
-        return null;
+    @GetMapping
+    public List<Accounts> getAllAccounts() throws SQLException {
+        return as.getAllAccounts();
     }
 
-    public ResponseEntity<List<Accounts>> getAccountsByUser(String param) {
-        return null;
+    @GetMapping("/{accountId}")
+    public Accounts getAccountById(@PathVariable int accountId) throws SQLException {
+        return as.getAccountById(accountId);
     }
 
-    public ResponseEntity<Integer> addAccount(Accounts accounts) {
-        return null;
+    @GetMapping("/users")
+    public List<Accounts> getAccountsByUser(@RequestParam String param) throws NumberFormatException, SQLException {
+        return as.getAccountsByUser(Integer.parseInt(param));
     }
 
-    public ResponseEntity<Void> updateAccount(int accountId, Accounts accounts) {
-        return null;
+    @PostMapping("/add")
+    public ResponseEntity<Integer> addAccount(@RequestBody Accounts accounts) throws SQLException {
+        return new ResponseEntity<>(as.addAccount(accounts), HttpStatus.CREATED);
     }
 
-    public ResponseEntity<Void> deleteAccount(int accountId) {
-        return null;
+    @PutMapping("/update/{accountId}")
+    public ResponseEntity<Void> updateAccount(@PathVariable int accountId, @RequestBody Accounts accounts)
+            throws SQLException {
+        as.updateAccount(accounts);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("delete/{accountId}")
+    public ResponseEntity<Void> deleteAccount(int accountId) throws SQLException {
+        as.deleteAccount(accountId);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -3,11 +3,14 @@ package com.edutech.progressive.dao;
 import java.sql.*;
 import java.util.*;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Repository;
+
 import com.edutech.progressive.config.DatabaseConnectionManager;
 import com.edutech.progressive.entity.Accounts;
 
+@Repository
 public class AccountDAOImpl implements AccountDAO {
-    // private List<Accounts> accountsList = new ArrayList<>();
     public Connection connection;
 
     public AccountDAOImpl() {
@@ -65,6 +68,7 @@ public class AccountDAOImpl implements AccountDAO {
         return null;
     }
 
+    @Modifying
     @Override
     public int addAccount(Accounts accounts) throws SQLException {
         String sql = "INSERT INTO accounts(customer_id,balance) VALUES (?,?)";
@@ -86,6 +90,7 @@ public class AccountDAOImpl implements AccountDAO {
         return generatedID;
     }
 
+    @Modifying
     @Override
     public void updateAccount(Accounts accounts) throws SQLException {
         String sql = "UPDATE accounts SET customer_id=?, balance=? WHERE account_id=?";
@@ -96,6 +101,7 @@ public class AccountDAOImpl implements AccountDAO {
         ps.executeUpdate();
     }
 
+    @Modifying
     @Override
     public void deleteAccount(int accountId) throws SQLException {
         String sql = "DELETE FROM accounts WHERE account_id=?";

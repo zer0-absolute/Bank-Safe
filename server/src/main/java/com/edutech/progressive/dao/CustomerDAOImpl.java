@@ -3,10 +3,14 @@ package com.edutech.progressive.dao;
 import java.sql.*;
 import java.util.*;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Repository;
+
 import com.edutech.progressive.config.DatabaseConnectionManager;
 import com.edutech.progressive.dto.CustomerAccountInfo;
 import com.edutech.progressive.entity.Customers;
 
+@Repository
 public class CustomerDAOImpl implements CustomerDAO {
     public Connection connection;
 
@@ -54,6 +58,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return null;
     }
 
+    @Modifying
     @Override
     public int addCustomer(Customers customers) throws SQLException {
         try (Connection connection = DatabaseConnectionManager.getConnection();
@@ -76,6 +81,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
     }
 
+    @Modifying
     @Override
     public void updateCustomer(Customers customers) throws SQLException {
         String sql = "UPDATE customers SET name=?, email=?,username=?,password=? WHERE customer_id=?";
@@ -88,6 +94,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         ps.executeUpdate();
     }
 
+    @Modifying
     @Override
     public void deleteCustomer(int customerId) throws SQLException {
         String sql = "DELETE FROM customers WHERE customer_id=?";

@@ -3,14 +3,18 @@ package com.edutech.progressive.service.impl;
 import java.sql.SQLException;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.edutech.progressive.dao.CustomerDAO;
 import com.edutech.progressive.dao.CustomerDAOImpl;
 import com.edutech.progressive.entity.Customers;
 import com.edutech.progressive.service.CustomerService;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
+    @Autowired
     private CustomerDAO customerDAO;
-    private static List<Customers> customersList = new ArrayList<>();
 
     public CustomerServiceImpl(CustomerDAOImpl customerDAO) {
         this.customerDAO = customerDAO;

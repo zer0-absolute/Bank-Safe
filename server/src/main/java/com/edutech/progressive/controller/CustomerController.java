@@ -9,6 +9,8 @@ import com.edutech.progressive.entity.Transactions;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/customers")
 public class CustomerController {
 
     public ResponseEntity<List<Customers>> getAllCustomers() {

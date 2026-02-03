@@ -2,7 +2,12 @@ package com.edutech.progressive.entity;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
 public class Transactions {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
     private int accountId;
     private double amount;
