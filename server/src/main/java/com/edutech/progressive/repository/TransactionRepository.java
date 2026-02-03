@@ -1,4 +1,8 @@
 package com.edutech.progressive.repository;
 
-public interface TransactionRepository  {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.edutech.progressive.entity.Transactions;
+
+public interface TransactionRepository extends JpaRepository<Transactions, Integer> {
 }

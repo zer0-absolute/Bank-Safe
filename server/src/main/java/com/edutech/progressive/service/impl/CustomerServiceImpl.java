@@ -1,6 +1,5 @@
 package com.edutech.progressive.service.impl;
 
-import java.sql.SQLException;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,29 +20,29 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customers> getAllCustomers() throws SQLException {
+    public List<Customers> getAllCustomers() {
         return customerDAO.getAllCustomers();
     }
 
-    public Customers getCustomerById(int customerId) throws SQLException {
+    public Customers getCustomerById(int customerId) {
         return customerDAO.getCustomerById(customerId);
     }
 
     @Override
-    public int addCustomer(Customers customers) throws SQLException {
+    public int addCustomer(Customers customers) {
         return customerDAO.addCustomer(customers);
     }
 
-    public void updateCustomer(Customers customers) throws SQLException {
+    public void updateCustomer(Customers customers) {
         customerDAO.updateCustomer(customers);
     }
 
-    public void deleteCustomer(int customerId) throws SQLException {
+    public void deleteCustomer(int customerId) {
         customerDAO.deleteCustomer(customerId);
     }
 
     @Override
-    public List<Customers> getAllCustomersSortedByName() throws SQLException {
+    public List<Customers> getAllCustomersSortedByName() {
         List<Customers> ans = customerDAO.getAllCustomers();
         Collections.sort(ans);
         return ans;
