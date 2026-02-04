@@ -31,7 +31,7 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     public List<Accounts> getAllAccountsByCustomer(int customer_id) {
-        return ar.findByCustomerId(customer_id);
+        return null;
     }
 
     @Override

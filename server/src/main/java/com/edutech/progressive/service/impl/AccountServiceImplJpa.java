@@ -6,50 +6,53 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.edutech.progressive.dao.AccountDAO;
 import com.edutech.progressive.entity.Accounts;
+import com.edutech.progressive.repository.AccountRepository;
 import com.edutech.progressive.service.AccountService;
 
 @Service
 public class AccountServiceImplJpa implements AccountService {
     @Autowired
-    private AccountDAO accountDAO;
+    private AccountRepository accountRepository;
 
-    public AccountServiceImplJpa(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
+    public AccountServiceImplJpa(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
     @Override
     public List<Accounts> getAllAccounts() {
-        return accountDAO.getAllAccounts();
+        return accountRepository.findAll();
     }
 
     public Accounts getAccountById(int accountId) {
-        return accountDAO.getAccountById(accountId);
+        return accountRepository.findById(accountId).orElse(null);
     }
 
     @Override
     public int addAccount(Accounts accounts) {
-        return accountDAO.addAccount(accounts);
+        return accountRepository.save(accounts).getAccountId();
     }
 
     public void updateAccount(Accounts accounts) {
-        accountDAO.updateAccount(accounts);
+        if (accounts == null || !accountRepository.existsById(accounts.getAccountId())) {
+            return;
+        }
+        accountRepository.save(accounts);
     }
 
     public void deleteAccount(int accountId) {
-        accountDAO.deleteAccount(accountId);
+        accountRepository.deleteById(accountId);
     }
 
     @Override
     public List<Accounts> getAllAccountsSortedByBalance() {
-        List<Accounts> ans = accountDAO.getAllAccounts();
+        List<Accounts> ans = accountRepository.findAll();
         Collections.sort(ans);
         return ans;
     }
 
     public List<Accounts> getAccountsByUser(int userId) {
-        return accountDAO.getAllAccountsByCustomer(userId);
+        return null;
     }
 
 }

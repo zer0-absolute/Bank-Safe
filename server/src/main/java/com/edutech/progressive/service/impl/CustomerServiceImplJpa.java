@@ -6,45 +6,48 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.edutech.progressive.dao.CustomerDAO;
-import com.edutech.progressive.dao.CustomerDAOImpl;
+
 import com.edutech.progressive.entity.Customers;
+import com.edutech.progressive.repository.CustomerRepository;
 import com.edutech.progressive.service.CustomerService;
 
 @Service
 public class CustomerServiceImplJpa implements CustomerService {
     @Autowired
-    private CustomerDAO customerDAO;
+    private CustomerRepository cr;
 
-    public CustomerServiceImplJpa(CustomerDAOImpl customerDAO) {
-        this.customerDAO = customerDAO;
+    public CustomerServiceImplJpa(CustomerRepository cr) {
+        this.cr = cr;
     }
 
     @Override
     public List<Customers> getAllCustomers() {
-        return customerDAO.getAllCustomers();
+        return cr.findAll();
     }
 
     public Customers getCustomerById(int customerId) {
-        return customerDAO.getCustomerById(customerId);
+        return cr.findByCustomerId(customerId);
     }
 
     @Override
     public int addCustomer(Customers customers) {
-        return customerDAO.addCustomer(customers);
+        return cr.save(customers).getCustomerId();
     }
 
     public void updateCustomer(Customers customers) {
-        customerDAO.updateCustomer(customers);
+        if (customers == null || !cr.existsById(customers.getCustomerId())) {
+            return;
+        }
+        cr.save(customers).getCustomerId();
     }
 
     public void deleteCustomer(int customerId) {
-        customerDAO.deleteCustomer(customerId);
+        cr.deleteById(customerId);
     }
 
     @Override
     public List<Customers> getAllCustomersSortedByName() {
-        List<Customers> ans = customerDAO.getAllCustomers();
+        List<Customers> ans = cr.findAll();
         Collections.sort(ans);
         return ans;
     }
