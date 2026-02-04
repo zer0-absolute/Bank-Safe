@@ -21,7 +21,7 @@ public class AccountController {
         this.asjpa = asjpa;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Accounts> getAllAccounts() throws SQLException {
         return asjpa.getAllAccounts();
     }
@@ -31,12 +31,12 @@ public class AccountController {
         return asjpa.getAccountById(accountId);
     }
 
-    @GetMapping("/users")
-    public List<Accounts> getAccountsByUser(@RequestParam String param) throws NumberFormatException, SQLException {
-        return asjpa.getAccountsByUser(Integer.parseInt(param));
+    @GetMapping("/user/{userId}")
+    public List<Accounts> getAccountsByUser(@PathVariable int userId) throws NumberFormatException, SQLException {
+        return asjpa.getAccountsByUser(userId);
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<Integer> addAccount(@RequestBody Accounts accounts) throws SQLException {
         return new ResponseEntity<>(asjpa.addAccount(accounts), HttpStatus.CREATED);
     }

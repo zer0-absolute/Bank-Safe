@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.edutech.progressive.entity.Customers;
 import com.edutech.progressive.repository.CustomerRepository;
 import com.edutech.progressive.service.CustomerService;
@@ -31,7 +30,11 @@ public class CustomerServiceImplJpa implements CustomerService {
 
     @Override
     public int addCustomer(Customers customers) {
-        return cr.save(customers).getCustomerId();
+        try {
+            return cr.save(customers).getCustomerId();
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     public void updateCustomer(Customers customers) {

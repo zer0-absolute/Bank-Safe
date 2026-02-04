@@ -30,7 +30,11 @@ public class AccountServiceImplJpa implements AccountService {
 
     @Override
     public int addAccount(Accounts accounts) {
-        return accountRepository.save(accounts).getAccountId();
+        try {
+            return accountRepository.save(accounts).getAccountId();
+        } catch (Exception e) {
+           return -1;
+        }
     }
 
     public void updateAccount(Accounts accounts) {
@@ -52,7 +56,7 @@ public class AccountServiceImplJpa implements AccountService {
     }
 
     public List<Accounts> getAccountsByUser(int userId) {
-        return null;
+        return accountRepository.findByCustomerId(userId);
     }
 
 }
