@@ -41,7 +41,7 @@ public class CustomerServiceImplJpa implements CustomerService {
         if (customers == null || !cr.existsById(customers.getCustomerId())) {
             return;
         }
-        cr.save(customers).getCustomerId();
+        cr.save(customers);
     }
 
     public void deleteCustomer(int customerId) {

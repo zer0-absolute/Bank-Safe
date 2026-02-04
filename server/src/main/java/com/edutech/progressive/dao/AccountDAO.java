@@ -16,6 +16,6 @@ public interface AccountDAO {
 
     public List<Accounts> getAllAccounts() throws SQLException;
 
-    public List<Accounts> getAllAccountsByCustomer(int userId) throws SQLException;
+    public List<Accounts> getAllAccountsByCustomer(int customer_id) throws SQLException;
 
 }

@@ -10,7 +10,7 @@ import com.edutech.progressive.entity.Accounts;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO {
-    private List<Accounts> accountsList = new ArrayList<>();
+    // private List<Accounts> accountsList = new ArrayList<>();
     public Connection connection;
 
     public AccountDAOImpl() {
