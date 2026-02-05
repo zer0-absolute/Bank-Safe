@@ -44,7 +44,7 @@ public class CustomerController {
     }
 
     @PostMapping()
-    public ResponseEntity<Integer> addCustomer(@RequestBody Customers customers) {
+    public ResponseEntity<Integer> addCustomer(@RequestBody Customers customers) throws SQLException {
         return new ResponseEntity<>(csjpa.addCustomer(customers), HttpStatus.CREATED);
     }
 
@@ -54,7 +54,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{customerID}")
-    public void updateCustomer(@PathVariable int customerID, @RequestBody Customers customers) {
+    public void updateCustomer(@PathVariable int customerID, @RequestBody Customers customers) throws SQLException {
         csjpa.updateCustomer(customers);
     }
 

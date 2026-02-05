@@ -1,5 +1,6 @@
 package com.edutech.progressive.service.impl;
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,16 +21,16 @@ public class CustomerServiceImplJpa implements CustomerService {
     }
 
     @Override
-    public List<Customers> getAllCustomers() {
+    public List<Customers> getAllCustomers() throws SQLException {
         return cr.findAll();
     }
 
-    public Customers getCustomerById(int customerId) {
+    public Customers getCustomerById(int customerId) throws SQLException {
         return cr.findByCustomerId(customerId);
     }
 
     @Override
-    public int addCustomer(Customers customers) {
+    public int addCustomer(Customers customers) throws SQLException {
         try {
             return cr.save(customers).getCustomerId();
         } catch (Exception e) {
@@ -37,19 +38,19 @@ public class CustomerServiceImplJpa implements CustomerService {
         }
     }
 
-    public void updateCustomer(Customers customers) {
+    public void updateCustomer(Customers customers) throws SQLException {
         if (customers == null || !cr.existsById(customers.getCustomerId())) {
             return;
         }
         cr.save(customers);
     }
 
-    public void deleteCustomer(int customerId) {
+    public void deleteCustomer(int customerId) throws SQLException {
         cr.deleteById(customerId);
     }
 
     @Override
-    public List<Customers> getAllCustomersSortedByName() {
+    public List<Customers> getAllCustomersSortedByName() throws SQLException {
         List<Customers> ans = cr.findAll();
         Collections.sort(ans);
         return ans;
